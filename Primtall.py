@@ -3,17 +3,15 @@ def faktoriser(tall):
     primtall = hentPrimtall(tall + 1)  #+1 to avoid constant loop if given number itself is prime
     faktorer = []
     ikkeEn = tall != 1
-
-    if primtall.length > 0:
+    if len(primtall) > 0:
         while ikkeEn:   #While number hasn't reached 1
             for verdi in primtall:
                 if tall % verdi == 0:
                     faktorer.append(verdi)
                     tall /= verdi
-                    ikkeEn = number != 1
+                    ikkeEn = tall != 1
                     break
-
-    return factors
+    return faktorer
 
 
 def hentPrimtall(tall):
@@ -29,3 +27,14 @@ def hentPrimtall(tall):
                 liste.append(i)
 
     return liste
+
+
+def main():
+    tall = input("Hvilket tall skal sjekkes? \n")
+    try:
+        print(faktoriser(int(tall)))
+    except Exception as e:
+        print(e)
+
+
+main()
