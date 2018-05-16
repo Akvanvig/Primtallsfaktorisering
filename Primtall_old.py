@@ -1,25 +1,18 @@
-import math
-
-num = input("Hvilket tall skal sjekkes? \n")
+import time
 
 #Factorizes a number
 def faktoriser(tall):
-    primtall = hentPrimtall(math.ceil(tall / 2))
+    primtall = hentPrimtall(tall + 1)  #+1 to avoid constant loop if given number itself is prime
     faktorer = []
     ikkeEn = tall != 1
     if len(primtall) > 0:
         while ikkeEn:   #While number hasn't reached 1
-            ikkeEndret = True
             for verdi in primtall:
                 if tall % verdi == 0:
                     faktorer.append(verdi)
                     tall /= verdi
                     ikkeEn = tall != 1
-                    ikkeEndret = False
                     break
-            if ikkeEndret:
-                faktorer.append(int(tall))
-                ikkeEn = False
     return faktorer
 
 
@@ -44,5 +37,8 @@ def main(tall):
     except Exception as e:
         print(e)
 
-
+num = 100000#input("Hvilket tall skal sjekkes? \n")
+start = time.time()
 main(num)
+slutt = time.time()
+print('{0:.3f} sekunder'.format((slutt - start)))
